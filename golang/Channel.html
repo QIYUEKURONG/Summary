@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Channel.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="channer%E9%80%9A%E9%81%93">channer通道</h1>
+<h2 id="why%EF%BC%9F">why？</h2>
+<p>1：为了达到在多个goroutine发送和接受共享的数据，达到数据同步的目的。</p>
+<h3 id="%E6%96%B9%E5%BC%8F%E5%92%8C%E4%BE%8B%E5%AD%90">方式和例子</h3>
+<p>方式：
+使用关键字chan,加上Go语言内置的make函数
+例子：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+pipe :=<span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">string</span>) <span class="hljs-comment">//声明了一个string类型的通道</span>
+<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span>{
+    pipe&lt;-<span class="hljs-string">"ju"</span>
+
+}()
+x:=&lt;-pipe
+fmt.Printfln(x)
+}
+</div></code></pre>
+<h3 id="%E7%AE%A1%E9%81%93%E7%9A%84%E7%BC%93%E5%86%B2%EF%BC%8C%E6%96%B9%E5%90%91%E5%92%8C%E9%80%89%E6%8B%A9%E5%99%A8">管道的缓冲，方向和选择器</h3>
+<p>相对于上面的例子，这样的管道是阻塞,也就是说如果我们在管道里面写了一些东西的话，那么这个管道就必须有一个接受的一端，如果没有的话那么就会出现错误。</p>
+<h4 id="%E7%AE%A1%E9%81%93%E7%9A%84%E7%BC%93%E5%86%B2">管道的缓冲</h4>
+<p>方式：make(chan string,3)后面的3就代表了我们加入了三个缓冲
+例子：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+ mess := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">int</span>,<span class="hljs-number">3</span>)
+ <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span>{
+     <span class="hljs-keyword">for</span> val:=<span class="hljs-keyword">range</span> mess{
+         fmt.Println(val)
+     }
+ }()
+<span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">3</span>;i++{
+    mess&lt;-i
+}<span class="hljs-comment">//把这个for循环删除也不会出现问题了</span>
+}
+</div></code></pre>
+<h4 id="%E7%AE%A1%E9%81%93%E7%9A%84%E6%96%B9%E5%90%91">管道的方向</h4>
+<p>引入的原因？
+如果说我们像定义一个只能读的通道或者只能写的通道该怎么做
+例子：</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span>
+<span class="hljs-comment">//这个函数的recv定义了只能从这个管道里面去取东西，send定义了只能从这个管道里面去存东西</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">fun</span><span class="hljs-params">(recv &lt;-<span class="hljs-keyword">chan</span> <span class="hljs-keyword">string</span>，send <span class="hljs-keyword">chan</span>&lt;- <span class="hljs-keyword">int</span>)</span></span>
+{
+    val ops <span class="hljs-keyword">int</span>=<span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> val:= <span class="hljs-keyword">range</span> recv{
+        fmt.Println(val)
+        send&lt;-ops
+        ops++
+    }
+    <span class="hljs-built_in">close</span>(send)
+}
+<span class="hljs-function"><span class="hljs-keyword">func</span>  <span class="hljs-title">setvalue</span><span class="hljs-params">(recv <span class="hljs-keyword">chan</span>&lt;- <span class="hljs-keyword">string</span>,msg <span class="hljs-keyword">string</span>)</span></span>
+{
+  recv&lt;-msg
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+  recv:=<span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">string</span>,<span class="hljs-number">3</span>)
+  send:=<span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">string</span>,<span class="hljs-number">3</span>)
+  <span class="hljs-keyword">go</span> fun(recv ,send)
+  setvalue(recv,<span class="hljs-string">"ju"</span>)
+  setvalue(recv,<span class="hljs-string">"wen"</span>)
+  setvalue(recv,<span class="hljs-string">"jie"</span>)
+  <span class="hljs-built_in">close</span>(recv)
+  <span class="hljs-keyword">for</span> val:=<span class="hljs-keyword">range</span> send{
+      fmt.Println(val)
+  }
+}
+</div></code></pre>
+<h4 id="%E9%80%9A%E9%81%93%E9%80%89%E6%8B%A9%E5%99%A8">通道选择器</h4>
+<p>引入的原因？
+主要就是为了可以进行多个通道的操作和处理的.如果select的多个分支都满足条件，则会随机的选取其中一个满足条件的分支</p>
+<p>用法：</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    c1:=<span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">string</span>)
+    c2:=<span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">string</span>)
+    <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span>{
+        C1&lt;-<span class="hljs-string">"JU"</span>
+    }()
+    <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span>{
+        c2&lt;-<span class="hljs-string">"LIU"</span>
+    }
+    <span class="hljs-keyword">select</span>{
+        <span class="hljs-keyword">case</span> msg1:=&lt;-c1:
+        fmt.Printfln(msg1)
+        <span class="hljs-keyword">case</span> msg2:=&lt;-c2:
+        fmt.Printfln(msg2)
+    }
+}
+</div></code></pre>
+
+</body>
+</html>
