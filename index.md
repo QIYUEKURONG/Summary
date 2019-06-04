@@ -30,7 +30,7 @@
 
 ## 8:Channel
 
-[Channer](golang/Channel.pdf)
+[Channel](golang/Channel.pdf)
 
 ## 9:Chatroom
 
